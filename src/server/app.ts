@@ -1,5 +1,6 @@
 import fastify, { FastifyInstance } from 'fastify';
 import staticPlugin from '@fastify/static';
+import cors from '@fastify/cors';
 import AuthRouter from './routes/login';
 import ContainersRouter from './routes/containers';
 
@@ -7,6 +8,7 @@ const App = async (): Promise<FastifyInstance> => {
   try {
     const server = fastify({ logger: true, disableRequestLogging: true });
     server.register(staticPlugin, { root: __dirname, prefix: '/' });
+    await server.register(cors, { origin: '*' });
 
     server.get('/', (req, reply) => {
       reply.sendFile('index.html', {cacheControl: false});
