@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8084:3000"
+      - "8076:3000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: on-failure
